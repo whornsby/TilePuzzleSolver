@@ -14,8 +14,6 @@ public class TileSolver {
 		matchGlossary = new TileMatches(tiles);
 		System.out.println("SETUP COMPLETE.");
 
-		// if(true)return;
-
 		for (int i = 0; i < 9; i++) {
 			for (int r = 0; r < 4; r++) {
 				clearGrid();
