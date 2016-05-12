@@ -10,7 +10,6 @@ public class TileSolver {
 		comparisons = 0;
 		grid = new Tile[9];
 		tiles = new Tile[9];
-		System.out.println("start");
 		addTiles();
 		matchGlossary = new TileMatches(tiles);
 		System.out.println("SETUP COMPLETE.");
@@ -35,7 +34,9 @@ public class TileSolver {
 			printGrid();
 			System.out.println(comparisons);
 			System.out.println("SOLVED!");
-			// System.exit(0); //optional to find only one solution or all
+			System.exit(0); // no need to find more solutions
+							// which will just be different rotations of a
+							// solved grid
 		}
 		LinkedList<TileMatches.TileSidePair> queue = new LinkedList<TileMatches.TileSidePair>();
 		// could be any list but if I'm calling it a queue it might as well be a
@@ -110,7 +111,7 @@ public class TileSolver {
 	}
 
 	private static void printGrid() {
-		System.out.println("\n============================");
+		System.out.println("============================");
 		for (int i = 0; i < 3; i++) {
 			for (int k = 0; k < 5; k++) {
 				for (int j = 0; j < 3; j++) {
@@ -152,7 +153,7 @@ public class TileSolver {
 
 	@SuppressWarnings("unused")
 	private static void printGrid2() {
-		System.out.println("\n============================");
+		System.out.println("============================");
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				int gridIndex = 3 * i + j;
