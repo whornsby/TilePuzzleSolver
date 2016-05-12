@@ -1,11 +1,10 @@
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class TileSolver {
 	private static Tile[] grid;
 	private static Tile[] tiles;
-	static TileMatches matchGlossary;
-	static int comparisons;
+	private static TileMatches matchGlossary;
+	private static int comparisons;
 
 	public static void main(String[] args) {
 		comparisons = 0;
@@ -27,21 +26,18 @@ public class TileSolver {
 			}
 		}
 		System.out.println(comparisons);
-		System.out.println("PROGRAM COMPLETE: NOT SOLVED");
+		System.out.println("PROGRAM COMPLETE");
 
 	}
 
 	private static void addToGrid(int location) {
-		if (location >= 7) {
-			// printGrid();
-		}
 		if (location >= 9) {
 			printGrid();
 			System.out.println(comparisons);
 			System.out.println("SOLVED!");
-			//System.exit(0);
+			// System.exit(0); //optional to find only one solution or all
 		}
-		ArrayList<TileMatches.TileSidePair> queue = new ArrayList<TileMatches.TileSidePair>();
+		LinkedList<TileMatches.TileSidePair> queue = new LinkedList<TileMatches.TileSidePair>();
 		// could be any list but if I'm calling it a queue it might as well be a
 		// LinkedList
 
@@ -54,9 +50,6 @@ public class TileSolver {
 				comparisons++;
 				if (!gridContains(tsp.getTile())) {
 					tsp.getTile().setRotation((3 - tsp.getSide()));
-					// System.out.println(grid[location -
-					// 1].getSide(1).getSideType() + " : " +
-					// tsp.getTile().getSide(3).getSideType());
 					if (location <= 2 || tsp.getTile().getSide(0).matches(grid[location - 3].getSide(2))) {
 						grid[location] = tsp.getTile();
 						addToGrid(location + 1);
@@ -101,7 +94,7 @@ public class TileSolver {
 
 	private static void addTiles() {
 		// For dinosaur puzzle:
-		// 1: Triceritops; 2: Parasaurolophus; 3: T-Rex; 4: Brontasourus
+		// 1: Triceritops; 2: Parasaurolophus; 3: T-Rex; 4: Apatasaurus
 		// true = bottom; false = head
 
 		tiles[0] = new Tile(0, new byte[] { 1, 2, 3, 4 }, new boolean[] { false, false, false, false });
@@ -117,7 +110,6 @@ public class TileSolver {
 	}
 
 	private static void printGrid() {
-		// double for
 		System.out.println("\n============================");
 		for (int i = 0; i < 3; i++) {
 			for (int k = 0; k < 5; k++) {
@@ -160,7 +152,6 @@ public class TileSolver {
 
 	@SuppressWarnings("unused")
 	private static void printGrid2() {
-		// double for
 		System.out.println("\n============================");
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {

@@ -16,7 +16,7 @@ public class Tile {
 		sides = new Side[4];
 		for (int i = 0; i < 4; i++) {
 			sides[i] = new Side(typeValues[i], halfValues[i]);
-			// In-order: Up, Right, Left, Down
+			// In-order: Up, Right, Down, Left
 		}
 	}
 
@@ -38,16 +38,6 @@ public class Tile {
 
 	public int getIndex(){
 		return tileNum;
-	}
-	
-	public void rotateRight() {
-		rotation += 5; // 5 = 1 + 4
-		rotation %= 4;
-	}
-
-	public void rotateLeft() {
-		rotation += 3; // 3 = -1 + 4
-		rotation %= 4;
 	}
 
 	public void setRotation(int rotation) {
@@ -82,9 +72,9 @@ public class Tile {
 	}
 
 	public class Side {
-		byte sideType; // The pattern or icon (ex. type of dinosour_ that needs
+		private byte sideType; // The pattern or icon (ex. type of dinosour_ that needs
 						// to be matched on the side
-		boolean otherHalf; // which half of the type (ex. top or bottom) the
+		private boolean otherHalf; // which half of the type (ex. top or bottom) the
 							// side represents
 
 		public Side(byte type, boolean half) {
